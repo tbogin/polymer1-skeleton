@@ -1,0 +1,59 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="shared-styles.html">
+<link rel="import" href="my-view2.html">
+
+<dom-module id="my-view1">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: inline-block;
+
+        padding: 10px;
+
+        --my-view2-background: orange;
+      }
+      button{
+        background: deepskyblue;
+      }
+      .btn-tomato{
+        background: tomato;
+      }
+      .gray{
+        --my-view2-background: yellow;
+      }
+    </style>
+
+    <h1 on-mouseover="mouseoverLog">View 1</h1>
+    <my-view2 name="banana"></my-view2>
+    <button id="btn" on-mouseover="colorToggle">Change Color</button>
+
+    <my-view2 class="gray" name="strawberry"></my-view2>
+
+
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'my-view1',
+      mouseoverLog: function(){
+        console.log("Mouse");
+      },
+      colorToggle: function(){
+        var button = this.$.btn;
+        button.classList.toggle('btn-tomato');
+      }
+    });
+  </script>
+</dom-module>
