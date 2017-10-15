@@ -72,11 +72,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         'iron-form-submit': 'handleSubmit'
       },
       handleSubmit: function(event){
-       // this.$.nameOutput.innerHTML = event.detail.name;
-       // this.$.birdOutput.innerHTML = event.detail.bird;
+       this.$.nameOutput.innerHTML = event.detail.name;
+       this.$.birdOutput.innerHTML = event.detail.bird;
        let food = event.detail.food;
-       Array.isArray(food) ? this.$.foodOutput.innerHTML = food.join(", ") : this.$.foodOutput.innerHTML = food;
-       food.includes('cheese') ? console.log("Cheese") : console.log("No cheese");
+       if(food !== undefined){
+          Array.isArray(food) ? this.$.foodOutput.innerHTML = food.join(", ") : this.$.foodOutput.innerHTML = food;
+          food.includes('cheese') ? console.log("Cheese") : console.log("No cheese");
+        }
       }
     });
   </script>

@@ -1,0 +1,58 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="my-view3.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="my-view4">
+	<template>
+		<style include="shared-styles">
+			:host{
+				display: block;
+				padding: 10px;
+			}
+		</style>
+
+		<div>Hello View 4</div>
+
+	 <paper-input label = "Write something..." id = "input" value = "{{words::input}}"
+       autofocus>
+    </paper-input>
+    <p>You typed: <b>{{words}}</b></p>
+    
+    <h3>Echo:</h3>
+    <template is="dom-repeat" items="{{echo}}">
+    	<div>{{item}}</div>
+    </template>
+   
+    <iron-ajax 
+    	 auto
+       url = "https://jsonplaceholder.typicode.com/albums"
+       params = "{'q': q}" 
+       handle-as = "json" 
+       on-response = "_handleResponse">
+    </iron-ajax>
+
+		<!-- <my-view3 ted="Theodore"></my-view3> -->
+		
+	</template>
+	<script>
+    (function () {
+       Polymer ({
+          is: 'my-view4', 
+          properties: {
+             echo: {
+                type: String, value: 'waiting ...', reflectToAttribute: true
+             }
+          },
+          _handleResponse: function(event, request) {
+             var response = request.response.slice(0, 4);
+             console.log( response );
+             var albums = response.map( (album) => album.title );
+             this.echo = albums;
+             console.log(albums.join(", "));
+          }
+       });
+    })();
+	</script>
+</dom-module>

@@ -40,13 +40,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <h1>Hello view 3</h1>
     <h1>Hello {{ ted }}</h1>
 
-    <template is="dom-repeat" items="{{mice}}">
-      <ul>
-        <li>
-          <div>{{item.name}} the mouse is {{item.color}}</div>
-        </li>
-      </ul>
-    </template>
+    <ul>
+      <template is="dom-repeat" items="{{mice}}">
+          <li>
+            <div>{{item.name}} the mouse is {{item.color}}</div>
+          </li>
+      </template>
+    </ul>
 
     <paper-button id="paperBtn" class="custom indigo" noink raised>Paper Button</paper-button>
 
